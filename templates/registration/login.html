@@ -1,0 +1,30 @@
+{% load static %}
+
+<head>
+
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'style/registration.css' %}">
+
+</head>
+
+
+<body>
+    {% if user.is_authenticated %}
+        <br>
+        <h1 id="welkoms-bericht">Welkom {{ user.username }}</h1>
+        <h1 id="welkoms-bericht">je bent al ingelogd</h1>
+    {% else %}
+        <div class="login-box">
+        <h1>Login</h1>
+        <p>{{ error }}</p>
+        <form method="POST" content_type='application/json'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="errormsg">{{ error }}</p>
+            <button class="btn1" type="submit" value=Submit">Login</button>
+        </form>
+    </div>
+    {% endif %}
+
+
+</body>

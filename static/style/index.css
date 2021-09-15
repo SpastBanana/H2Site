@@ -1,0 +1,48 @@
+
+/* Computer */
+@media only screen and (min-width: 800px) {
+
+    body h2{
+        text-align: center;
+        color: white;
+    }
+    #wrapper {
+        overflow: hidden; /* add this to contain floated children */
+        height: 752px;
+    }
+
+    #first {
+        float:right; /* add this */
+        margin: 10px;
+    }
+
+    #second {
+        float: right; /* add this */
+        margin: 10px;
+    }
+}
+
+/* Phone */
+@media only screen and (max-width: 800px) {
+
+    body h2{
+        text-align: center;
+        color: white;
+    }
+    #wrapper {
+        overflow: hidden; /* add this to contain floated children */
+        height: 850px;
+        margin-top: 25px;
+    }
+
+    #first {
+        float:right; /* add this */
+        margin: 10px;
+    }
+
+    #second {
+        float: right; /* add this */
+        margin: 10px;
+    }
+
+}
