@@ -1,3 +1,4 @@
+python manage.py migrate
 git add .
 git status
 echo Commit Text:
