@@ -2,19 +2,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<script>
+
+    function logoclick() {
+        window.location.href = '/'
+    }
+
+    function hamburger() {
+        var x = document.getElementsByClassName("navlist");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+         }
+</script>
+
 <head>
     <meta charset="UTF-8">
     <title>H2Heating</title>
     <link rel="stylesheet" href="{% static 'style/default.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <header>
     {% if user.is_authenticated %}
 
         {# desktop #}
         <div class="desktop">
-            <div class="logo">
-
-            </div>
+            <div class="logo"></div>
             <div class="navlist-box">
                 <div class="navlist">
                     <a href="/">Home</a>
@@ -26,9 +41,7 @@
 
         {# mobile #}
         <div class="mobile">
-            <div class="logo">
-
-            </div>
+            <div class="logo"></div>
             <div class="navlist-box">
                 <div class="navlist">
                     <a href="/">Home</a>
@@ -36,6 +49,9 @@
                     <a href="/admin">admin</a>
                 </div>
             </div>
+            <a href="javascript:void(0);" class="hamburger" onclick="hamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     {% else %}
 
@@ -65,6 +81,9 @@
                     <a href="/register">Register</a>
                 </div>
             </div>
+            <a href="javascript:void(0);" class="hamburger" onclick="hamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     {% endif %}
 </header>

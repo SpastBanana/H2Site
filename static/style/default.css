@@ -2,3 +2,46 @@
     padding: 0;
     margin: 0;
 }
+
+/*desktop*/
+@media only screen and (min-width: 800px) {
+
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
+
+
+/*mobile*/
+@media only screen and (max-width: 800px) {
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    a.hamburger {
+        background: black;
+        color: white;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .navlist {
+        display: none;
+    }
+}
