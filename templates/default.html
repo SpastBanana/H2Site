@@ -8,18 +8,65 @@
     <link rel="stylesheet" href="{% static 'style/default.css' %}">
 </head>
 <header>
-    <div class="desktop">
-        <div class="logo"></div>
-        <div class="navlist-box">
-            <div class="navlist">
-                <a href="/">Home</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-                <a href="/logout">Logout</a>
-                <a href="/admin">admin</a>
+    {% if user.is_authenticated %}
+
+        {# desktop #}
+        <div class="desktop">
+            <div class="logo">
+
+            </div>
+            <div class="navlist-box">
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/admin">admin</a>
+                </div>
             </div>
         </div>
-    </div>
+
+        {# mobile #}
+        <div class="mobile">
+            <div class="logo">
+
+            </div>
+            <div class="navlist-box">
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/admin">admin</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+
+        {# desktop #}
+        <div class="desktop">
+            <div class="logo">
+
+            </div>
+            <div class="navlist-box">
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+            </div>
+        </div>
+
+        {# mobile #}
+        <div class="mobile">
+            <div class="logo">
+
+            </div>
+            <div class="navlist-box">
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </header>
 <body>
     <div id="">
