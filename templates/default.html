@@ -2,110 +2,143 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<script>
+    <head>
+        <meta charset="UTF-8">
+        <title>H2Smart</title>
+        <link rel="stylesheet" href="{% static 'style/default.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-    function logoclick() {
-        window.location.href = '/'
-    }
-
-    function hamburger() {
-        var x = document.getElementsByClassName("navlist");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-         }
-</script>
-
-<head>
-    <meta charset="UTF-8">
-    <title>H2Heating</title>
-    <link rel="stylesheet" href="{% static 'style/default.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<header>
-    {% if user.is_authenticated %}
-
-        {# desktop #}
-        <div class="desktop">
-            <div class="logo"></div>
-            <div class="navlist-box">
-                <div class="navlist">
-                    <a href="/">Home</a>
-                    <a href="/logout">Logout</a>
-                    <a href="/admin">admin</a>
+    <body>
+        <header>
+            {% if user.is_authenticated %}
+        
+                <!-- desktop -->
+                <div class="headDesktop">
+                    <div class="logo">
+                        <a href="/home">
+                            <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="navlist">
+                        <a href="/">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                        <a href="/admin">admin</a>
+                    </div>
+                </div>
+        
+                <!-- mobile -->
+                <div class="headMobile">
+                    <div class="logo">
+                        <a href="/home">
+                            <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
+                        </a>            </div>
+                    <div class="burgerBox">
+                        <div class="burger"></div>
+                    </div>
+                    <div class="navlist">
+                        <a href="/">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                        <a href="/admin">admin</a>
+                    </div>
+                </div>
+            {% else %}
+        
+                <!-- desktop -->
+                <div class="headDesktop">
+                    <div class="logo">
+                        <a href="/home">
+                            <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="navlist">
+                        <a href="/">Home</a>
+                        <a href="/login">Login</a>
+                        <a href="/register">Register</a>
+                    </div>
+                </div>
+        
+                <!-- mobile -->
+                <div class="headMobile">
+                    <div class="logo">
+                        <a href="/home">
+                            <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
+                        </a>            </div>
+                    <div class="burgerBox">
+                        <div class="burger"></div>
+                    </div>
+                    <div class="navlist">
+                        <a href="/">Home</a>
+                        <a href="/login">Login</a>
+                        <a href="/register">Register</a>
+                    </div>
+                </div>
+            {% endif %}
+        </header>
+            <div id="">
+                {% include page %}
+            </div>
+        <footer>
+            <!-- Desktop -->
+            <div class="footDesktop">
+                <div class="footLine">
+                    <a href="https://www.accenda.nl" target="_blank">
+                        <img src="{% static 'IMG/accenda.png' %}" alt="accenda">
+                    </a>
+                    <a href="https://www.i-emdelft.nl" target="_blank">
+                        <img src="{% static 'IMG/iemdelft.png' %}" alt="delft">
+                    </a>
+                </div>
+                <div class="footInfo">
+                    <div class="footBlock-1">
+                        <div>&copy; 2021</div>
+                        <div>H2Smart</div>
+                    </div>
+                    <div class="footBlock-2">
+                        <div>Creators:</div>
+                        <div>Nigel de Werk</div>
+                        <div>Sebastiaan de Vries</div>
+                    </div>
+                    <div class="footBlock-3">
+                        <div>System:</div>
+                        <div>RaspbianLight-OS</div>
+                    </div>
+                    <div class="footBlock-4">
+                        <div>Help:</div>
+                        <div>info@accenda.nl</div>
+                        <div>info@datalectro.nl</div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        {# mobile #}
-        <div class="mobile">
-            <div class="logo"></div>
-            <div class="navlist-box">
-                <div class="navlist">
-                    <a href="/">Home</a>
-                    <a href="/logout">Logout</a>
-                    <a href="/admin">admin</a>
+        
+            <!-- Mobile -->
+            <div class="footMobile">
+                <div class="footLine">
+                    <img src="{% static 'IMG/accenda.png' %}" alt="accenda">
+                    <img src="{% static 'IMG/iemdelft.png' %}" alt="delft">
+                </div>
+                <div class="footInfo">
+                    <div class="footBlock-1">
+                        <div>&copy; 2021</div>
+                        <div>H2Smart</div>
+                    </div>
+                    <div class="footBlock-2">
+                        <div>Creators:</div>
+                        <div>Nigel de Werk</div>
+                        <div>Sebastiaan de Vries</div>
+                    </div>
+                    <div class="footBlock-3">
+                        <div>System:</div>
+                        <div>RaspbianLight-OS</div>
+                    </div>
+                    <div class="footBlock-4">
+                        <div>Help:</div>
+                        <div>info@accenda.nl</div>
+                        <div>info@datalectro.nl</div>
+                    </div>
                 </div>
             </div>
-            <a href="javascript:void(0);" class="hamburger" onclick="hamburger()">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-    {% else %}
-
-        {# desktop #}
-        <div class="desktop">
-            <div class="logo">
-
-            </div>
-            <div class="navlist-box">
-                <div class="navlist">
-                    <a href="/">Home</a>
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
-                </div>
-            </div>
-        </div>
-
-        {# mobile #}
-        <div class="mobile">
-            <div class="logo">
-
-            </div>
-            <div class="navlist-box">
-                <div class="navlist">
-                    <a href="/">Home</a>
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
-                </div>
-            </div>
-            <a href="javascript:void(0);" class="hamburger" onclick="hamburger()">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-    {% endif %}
-</header>
-<body>
-    <div id="">
-        {% include page %}
-    </div>
-</body>
-<footer>
-    <div class="line">
-        <img src="" alt="accenda">
-        <img src="" alt="i-em delft">
-    </div>
-    <div class="footBlock-1">
-        copyright
-    </div>
-    <div class="footBlock-2">
-        system info
-    </div>
-    <div class="footBlock-3">
-        Help
-    </div>
-</footer>
+        </footer>
+    </body>
 </html>
 
