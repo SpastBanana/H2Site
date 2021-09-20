@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render
 from frontend.forms import SignUpForm, LoginForm
+from api.models import deltaStatus
 
 def indexView(request):
     template_name = 'index.html'
@@ -48,3 +49,51 @@ def loginView(request):
 def logoutView(request):
     logout(request)
     return redirect('Home')
+
+def profielView(request):
+    if not request.user.is_anonymous:
+        meting_id = request.user.profile.delta_ids
+        if meting_id != None:
+            delta_statusses = deltaStatus.objects.filter(meting_id=meting_id).order_by('time').reverse()
+            args = {'page': 'profiel.html', 'delta_statusses': delta_statusses, 'meting_id': meting_id}
+
+            return render(request, 'default.html', args)
+        else:
+            args = {'page': 'profiel.html', 'delta_statusses': None, 'meting_id': meting_id}
+            return render(request, 'default.html', args)
+    else:
+        args = {'page': 'profiel.html', 'delta_statusses': None}
+        return render(request, 'default.html', args)
+
+def dashboardView(request):
+    if not request.user.is_anonymous:
+        delta_ids = request.user.profile.delta_ids
+        if delta_ids is not None:
+            delta_ids_sep = split_delta_ids(delta_ids)
+            selected_delta_id = get_selected_delta_id(request, delta_ids_sep)
+
+            delta_statusses = deltaStatus.objects.filter(delta_id=selected_delta_id).order_by('time').reverse()
+            if len(delta_statusses) > 0:
+                args = {'page':'dashboard.html', 'delta_status': delta_statusses[0], 'delta_id': selected_delta_id}
+                return render(request, 'default.html', args)
+            else:
+                args = {'page': 'dashboard.html', 'delta_id': delta_ids}
+                return render(request, 'default.html', args)
+
+    args = {'page': 'dashboard.html',}
+    return render(request, 'default.html', args)
+
+def split_delta_ids(delta_ids):
+    delta_ids_sep = delta_ids.replace(" ", "").split(";")
+    delta_ids_sep = [n for n in delta_ids_sep if len(n) > 0]  # Filter spaces
+    return delta_ids_sep
+
+def get_selected_delta_id(request, delta_ids_sep):
+    # get query delta id
+    selected_delta_id = request.GET.get('delta_id')
+
+    # Check if user filtered on delta id else set selected delta id to first delta id in profile
+    if selected_delta_id is None:
+        selected_delta_id = delta_ids_sep[0]
+
+    return selected_delta_id
