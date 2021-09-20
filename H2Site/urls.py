@@ -7,6 +7,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('frontend.urls')),
+    path('api/', include('api.urls')),
     path('', include('frontend.urls')),
 ]
 

@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import vehicleStatus
+from .models import deltaStatus
 
-class viewVehicleStatusSerializer(serializers.ModelSerializer):
+class viewDeltaStatusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = vehicleStatus
+        model = deltaStatus
         fields = '__all__'
