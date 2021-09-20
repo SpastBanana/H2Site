@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>H2Smart</title>
-        <link rel="stylesheet" href="{% static 'style/default.css' %}">
+        <link rel="stylesheet" href="{% static 'CSS/default.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -33,7 +33,9 @@
                     <div class="logo">
                         <a href="/home">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
-                        </a>            </div>
+                        </a>
+                    </div>
+
                     <div class="burgerBox">
                         <div class="burger"></div>
                     </div>
@@ -43,6 +45,18 @@
                         <a href="/profiel">Profiel</a>
                         <a href="/admin">admin</a>
                     </div>
+                    <div class="burgerBar">
+                        <div onclick="burgBtn()" class="burgerBox">
+                            <div id="burger1" class="burg1"></div>
+                            <div id="burger2" class="burg2"></div>
+                            <div id="burger3" class="burg3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="navList" class="mobileNavlist">
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/admin">admin</a>
                 </div>
             {% else %}
         
@@ -66,14 +80,18 @@
                         <a href="/home">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>            </div>
-                    <div class="burgerBox">
-                        <div class="burger"></div>
+                    <div class="burgerBar">
+                        <div onclick="burgBtn()" class="burgerBox">
+                            <div id="burger1" class="burg1"></div>
+                            <div id="burger2" class="burg2"></div>
+                            <div id="burger3" class="burg3"></div>
+                        </div>
                     </div>
-                    <div class="navlist">
-                        <a href="/">Home</a>
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
-                    </div>
+                </div>
+                <div id="navList" class="mobileNavlist">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
             {% endif %}
         </header>
@@ -108,7 +126,6 @@
                     <div class="footBlock-4">
                         <div>Help:</div>
                         <div>info@accenda.nl</div>
-                        <div>info@datalectro.nl</div>
                     </div>
                 </div>
             </div>
@@ -141,6 +158,7 @@
                 </div>
             </div>
         </footer>
+        <script src="{% static 'JS/default.js' %}"></script>
     </body>
 </html>
 
