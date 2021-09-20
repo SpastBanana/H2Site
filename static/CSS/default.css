@@ -6,7 +6,7 @@
 
 /*desktop*/
 @media only screen and (min-width: 1000px) {
-    .headMobile, .footMobile {
+    .headMobile, .footMobile, .mobileNavlist {
         display: none;
     }
 
@@ -56,7 +56,7 @@
     }
 
     .footInfo {
-        height: 40vh;
+        height: 30vh;
         width: 100%;
         display: flex;
         align-items: center;
@@ -99,25 +99,51 @@
 
     .burgerBar {
         display: flex;
+        align-items: center;
+        justify-content: center;
         height: 10vh;
         width: 100%;
         background: chocolate;
-        align-items: center;
-        justify-content: center;
     }
 
     .burgerBox {
         display: flex;
-        background-color: black;
-        height: 10vh;
-        width: 10vw;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        height: 100%;
+        width: 15%;
+        cursor: pointer;
     }
 
-    .burger {
-
+    .burg1, .burg2, .burg3 {
+        height: 10px;
+        width: 100%;
+        background: whitesmoke;
+        border-radius: 5px;
+        transition: all 0.5s;
     }
 
-    .navlist {
+    .burg1.open {
+        transform: rotate(45deg);
+        position: relative;
+        top: 2vh;
+        transition: all 0.5s;
+    }
+
+    .burg2.open {
+        display: none;
+        transition: all 0.5s;
+    }
+
+    .burg3.open {
+        transform: rotate(-45deg);
+        position: relative;
+        bottom: 2vh;
+        transition: all 0.5s;
+    }
+
+    .mobileNavlist {
         position: absolute;
         top: 0;
         height: 20vh;
@@ -129,16 +155,16 @@
         background: white;
         border: solid black 0.5vw;
         border-top: none;
-        z-index: -5;
+        z-index: 5;
         transition: all 0.5s ease-in-out;
     }
 
-    .navlist.open {
+    .mobileNavlist.open {
         top: 30vh;
         transition: all 0.5s ease-in-out;
     }
 
-    .navlist a {
+    .mobileNavlist a {
         color: black;
         font-size: 3vh;
         font-weight: 700;
@@ -148,7 +174,7 @@
     }
 
     .footLine {
-        height: 14vh;
+        height: 10vh;
         width: 100%;
         background: chocolate;
         display: flex;
@@ -157,11 +183,11 @@
     }
 
     .footLine img {
-        height: 10vh;
+        height: 5vh;
     }
 
     .footInfo {
-        height: 40vh;
+        height: 20vh;
         width: 100%;
         display: flex;
         align-items: center;
@@ -171,5 +197,6 @@
     .footInfo div {
         display: flex;
         flex-direction: column;
+        font-size: 1.5vh;
     }
 }
