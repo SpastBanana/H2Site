@@ -1,15 +1,15 @@
 /* Computer */
 @media only screen and (min-width: 1000px) {
     main {
-        height: 75vh;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .login-box{
-        height: 40vh;
-        width: 20vw;
+        height: 55vh;
+        width: 25vw;
         padding: 4vh;
         color: #282D3C;
         background: #00a8f3;
@@ -31,7 +31,7 @@
         width: 100%;
         border: none;
         border-bottom: solid gray 3px;
-        margin-bottom: 18px;
+        margin-bottom: 5px;
     }
 
     .submit {
@@ -46,6 +46,12 @@
 
     input:focus {
         outline: 0px;
+    }
+
+    p {
+        color: rgb(223, 1, 1);
+        font-weight: 600;
+        margin-bottom: 5px;
     }
 }
 

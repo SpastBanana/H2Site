@@ -5,8 +5,9 @@
     <head>
         <meta charset="UTF-8">
         <title>H2Smart</title>
-        <link rel="stylesheet" href="{% static 'style/default.css' %}">
+        <link rel="stylesheet" href="{% static 'CSS/default.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="{% static 'JS/burger.js' %}"></script>
     </head>
 
     <body>
@@ -33,14 +34,16 @@
                         <a href="/home">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>            </div>
-                    <div class="burgerBox">
-                        <div class="burger"></div>
+                    <div class="burgerBar">
+                        <div class="burgerbox">
+                            <div class="burger"></div>
+                        </div>
                     </div>
-                    <div class="navlist">
-                        <a href="/">Dashboard</a>
-                        <a href="/logout">Logout</a>
-                        <a href="/admin">admin</a>
-                    </div>
+                </div>
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/admin">admin</a>
                 </div>
             {% else %}
         
@@ -64,14 +67,16 @@
                         <a href="/home">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>            </div>
-                    <div class="burgerBox">
-                        <div class="burger"></div>
+                    <div class="burgerBar">
+                        <div class="burgerbox">
+                            <div class="burger"></div>
+                        </div>
                     </div>
-                    <div class="navlist">
-                        <a href="/">Home</a>
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
-                    </div>
+                </div>
+                <div class="navlist">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
             {% endif %}
         </header>
