@@ -16,12 +16,12 @@
                 <!-- desktop -->
                 <div class="headDesktop">
                     <div class="logo">
-                        <a href="/home">
+                        <a href="/">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>
                     </div>
                     <div class="navlist">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/">Dashboard</a>
                         <a href="/profiel">Profiel</a>
                         <a href="/admin">admin</a>
                         <a href="/logout">Logout</a>
@@ -31,19 +31,13 @@
                 <!-- mobile -->
                 <div class="headMobile">
                     <div class="logo">
-                        <a href="/home">
+                        <a href="/">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>
                     </div>
 
                     <div class="burgerBox">
                         <div class="burger"></div>
-                    </div>
-                    <div class="navlist">
-                        <a href="/dashboard">Dashboard</a>
-                        <a href="/profiel">Profiel</a>
-                        <a href="/admin">admin</a>
-                        <a href="/logout">Logout</a>
                     </div>
                     <div class="burgerBar">
                         <div onclick="burgBtn()" class="burgerBox">
@@ -53,9 +47,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="navList" class="mobileNavlist">
-                    <a href="/dashboard">Dashboard</a>
+                <div class="mobileNavlist">
+                    <a href="/">Dashboard</a>
                     <a href="/profiel">Profiel</a>
+                    <a href="/logout">Logout</a>
                     <a href="/admin">admin</a>
                     <a href="/logout">Logout</a>
                 </div>
@@ -64,7 +59,7 @@
                 <!-- desktop -->
                 <div class="headDesktop">
                     <div class="logo">
-                        <a href="/home">
+                        <a href="/">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
                         </a>
                     </div>
@@ -78,9 +73,10 @@
                 <!-- mobile -->
                 <div class="headMobile">
                     <div class="logo">
-                        <a href="/home">
+                        <a href="/">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
-                        </a>            </div>
+                        </a>            
+                    </div>
                     <div class="burgerBar">
                         <div onclick="burgBtn()" class="burgerBox">
                             <div id="burger1" class="burg1"></div>
