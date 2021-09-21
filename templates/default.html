@@ -22,8 +22,8 @@
                     </div>
                     <div class="navlist">
                         <a href="/">Dashboard</a>
-                        <a href="/logout">Logout</a>
                         <a href="/profiel">Profiel</a>
+                        <a href="/logout">Logout</a>
                         <a href="/admin">admin</a>
                     </div>
                 </div>
@@ -39,12 +39,6 @@
                     <div class="burgerBox">
                         <div class="burger"></div>
                     </div>
-                    <div class="navlist">
-                        <a href="/">Dashboard</a>
-                        <a href="/logout">Logout</a>
-                        <a href="/profiel">Profiel</a>
-                        <a href="/admin">admin</a>
-                    </div>
                     <div class="burgerBar">
                         <div onclick="burgBtn()" class="burgerBox">
                             <div id="burger1" class="burg1"></div>
@@ -53,8 +47,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="navList" class="mobileNavlist">
-                    <a href="/">Home</a>
+                <div class="mobileNavlist">
+                    <a href="/">Dashboard</a>
+                    <a href="/profiel">Profiel</a>
                     <a href="/logout">Logout</a>
                     <a href="/admin">admin</a>
                 </div>
@@ -79,7 +74,8 @@
                     <div class="logo">
                         <a href="/home">
                             <img src="{% static 'IMG/Logo.jpeg' %}" alt="">
-                        </a>            </div>
+                        </a>            
+                    </div>
                     <div class="burgerBar">
                         <div onclick="burgBtn()" class="burgerBox">
                             <div id="burger1" class="burg1"></div>
