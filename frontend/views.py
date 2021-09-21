@@ -52,7 +52,7 @@ def logoutView(request):
 
 def profielView(request):
     if not request.user.is_anonymous:
-        meting_id = request.user.profile.delta_ids
+        meting_id = request.user.profile.meting_ids
         if meting_id != None:
             delta_statusses = deltaStatus.objects.filter(meting_id=meting_id).order_by('time').reverse()
             args = {'page': 'profiel.html', 'delta_statusses': delta_statusses, 'meting_id': meting_id}
@@ -69,7 +69,7 @@ def dashboardView(request):
     if not request.user.is_anonymous:
         meting_ids = request.user.profile.meting_ids
         if meting_ids is not None:
-            delta_ids_sep = split_delta_ids(meting_ids)
+            delta_ids_sep = split_meting_ids(meting_ids)
             selected_meting_id = get_selected_delta_id(request, delta_ids_sep)
 
             delta_statusses = deltaStatus.objects.filter(meting_id=selected_meting_id).order_by('time').reverse()
@@ -83,7 +83,7 @@ def dashboardView(request):
     args = {'page': 'dashboard.html',}
     return render(request, 'default.html', args)
 
-def split_delta_ids(delta_ids):
+def split_meting_ids(delta_ids):
     delta_ids_sep = delta_ids.replace(" ", "").split(";")
     delta_ids_sep = [n for n in delta_ids_sep if len(n) > 0]  # Filter spaces
     return delta_ids_sep
