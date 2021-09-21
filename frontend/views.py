@@ -67,17 +67,17 @@ def profielView(request):
 
 def dashboardView(request):
     if not request.user.is_anonymous:
-        delta_ids = request.user.profile.delta_ids
-        if delta_ids is not None:
-            delta_ids_sep = split_delta_ids(delta_ids)
-            selected_delta_id = get_selected_delta_id(request, delta_ids_sep)
+        meting_ids = request.user.profile.meting_ids
+        if meting_ids is not None:
+            delta_ids_sep = split_delta_ids(meting_ids)
+            selected_meting_id = get_selected_delta_id(request, delta_ids_sep)
 
-            delta_statusses = deltaStatus.objects.filter(delta_id=selected_delta_id).order_by('time').reverse()
+            delta_statusses = deltaStatus.objects.filter(meting_id=selected_meting_id).order_by('time').reverse()
             if len(delta_statusses) > 0:
-                args = {'page':'dashboard.html', 'delta_status': delta_statusses[0], 'delta_id': selected_delta_id}
+                args = {'page':'dashboard.html', 'delta_status': delta_statusses[0], 'meting_id': selected_meting_id}
                 return render(request, 'default.html', args)
             else:
-                args = {'page': 'dashboard.html', 'delta_id': delta_ids}
+                args = {'page': 'dashboard.html', 'meting_id': meting_ids}
                 return render(request, 'default.html', args)
 
     args = {'page': 'dashboard.html',}

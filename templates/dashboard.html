@@ -1,0 +1,75 @@
+{% load static %}
+
+<head>
+
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+
+</head>
+
+
+<body>
+    <div class="content">
+        <h1>Dashboard</h1>
+        <br>
+        {% if user.is_authenticated %}
+            {% if meting_id != None %}
+                <div class="grid-container">
+                    <div class="grid-box">
+                        <h3>TA1</h3>
+                        <h1>{{ delta_status.TA1}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TA2</h3>
+                        <h1>{{ delta_status.TA2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TA1_2</h3>
+                        <h1>{{ delta_status.TA1_2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TB1</h3>
+                        <h1>{{ delta_status.TB1}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TB2</h3>
+                        <h1>{{ delta_status.TB2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TB1_2</h3>
+                        <h1>{{ delta_status.TB1_2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TC1</h3>
+                        <h1>{{ delta_status.TC1}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TC2</h3>
+                        <h1>{{ delta_status.TC2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TC1_2</h3>
+                        <h1>{{ delta_status.TC1_2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TD1</h3>
+                        <h1>{{ delta_status.TD1}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TD2</h3>
+                        <h1>{{ delta_status.TD2}} °C </h1>
+                    </div>
+                    <div class="grid-box">
+                        <h3>TD1_2</h3>
+                        <h1>{{ delta_status.TD1_2}} °C </h1>
+                    </div>
+                </div>
+
+            {% else %}
+                <p id="error-else">Er is geen metings punt aan dit account gekoppeld.</p>
+            {% endif %}
+        {% else %}
+            <p id="error-else">Om de delta van uw meting te zien moet u eerst <a href="/login" style="color: white">inloggen</a>.</p>
+        {% endif %}
+    </div>
+</body>

@@ -20,7 +20,7 @@ class UpperCaseCharField(models.CharField):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    delta_ids = UpperCaseCharField(max_length=240, null=True)
+    meting_ids = UpperCaseCharField(max_length=240, null=True)
 
     def __str__(self):
         return self.user.username
