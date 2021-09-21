@@ -5,6 +5,22 @@ from frontend.forms import SignUpForm, LoginForm
 from api.models import deltaStatus
 
 def indexView(request):
+    if not request.user.is_anonymous:
+        meting_ids = request.user.profile.meting_ids
+        if meting_ids is not None:
+            delta_ids_sep = split_meting_ids(meting_ids)
+            selected_meting_id = get_selected_delta_id(request, delta_ids_sep)
+
+            delta_statusses = deltaStatus.objects.filter(meting_id=selected_meting_id).order_by('time').reverse()
+            if len(delta_statusses) > 0:
+                args = {'page':'index.html', 'delta_status': delta_statusses[0], 'meting_id': selected_meting_id}
+                return render(request, 'default.html', args)
+            else:
+                args = {'page': 'index.html', 'meting_id': meting_ids}
+                return render(request, 'default.html', args)
+
+    # args = {'page': 'index.html',}
+    # return render(request, 'default.html', args)
     template_name = 'index.html'
     return render(request, 'default.html', {'page': template_name})
 

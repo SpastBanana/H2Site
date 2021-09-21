@@ -27,31 +27,35 @@ class createdeltaStatus(APIView):
             TA1 = values[0]
             TA2 = values[1]
             TA1_2 = values[2]
+            TAP = values[3]
 
-            TB1 = values[3]
-            TB2 = values[4]
-            TB1_2 = values[5]
+            TB1 = values[4]
+            TB2 = values[5]
+            TB1_2 = values[6]
+            TBP = values[7]
 
-            TC1 = values[6]
-            TC2 = values[7]
-            TC1_2 = values[8]
+            TC1 = values[8]
+            TC2 = values[9]
+            TC1_2 = values[10]
+            TCP = values[11]
 
-            TD1 = values[9]
-            TD2 = values[10]
-            TD1_2 = values[11]
+            TD1 = values[12]
+            TD2 = values[13]
+            TD1_2 = values[14]
+            TDP = values[15]
 
-            flow_1 = values[12]
-            flow_2 = values[13]
-            flow_3 = values[14]
-            flow_H2 = values[15]
+            flow_1 = values[16]
+            flow_2 = values[16]
+            flow_3 = values[16]
+            flow_H2 = values[16]
 
 
             # meting_id = request.headers.get('metingid').upper()
             delta_status = deltaStatus( #meting_id=meting_id,
-                                        TA1=TA1, TA2=TA2, TA1_2=TA1_2,
-                                        TB1=TB1, TB2=TB2, TB1_2=TB1_2,
-                                        TC1=TC1, TC2=TC2, TC1_2=TC1_2,
-                                        TD1=TD1, TD2=TD2, TD1_2=TD1_2,
+                                        TA1=TA1, TA2=TA2, TA1_2=TA1_2,TAP=TAP,
+                                        TB1=TB1, TB2=TB2, TB1_2=TB1_2, TBP=TBP,
+                                        TC1=TC1, TC2=TC2, TC1_2=TC1_2, TCP=TCP,
+                                        TD1=TD1, TD2=TD2, TD1_2=TD1_2, TDP=TDP,
                                         flow_1=flow_1, flow_2=flow_2, flow_3=flow_3, flow_H2=flow_H2,
                                         )
             delta_status.save()
