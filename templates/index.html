@@ -6,19 +6,97 @@
 </head>
 
 <main>
-    <div class="introText">
-        <h1>Welkom!</h1>
-        <p>
-            Dit is de homepagina van het H2Smart-System, log in om uw gegevens te zien.
-        </p>
-        <br>
-        <p>
-            Bent u op de verkeerde site, weet u niet wat u hier doet of hoe u hier gekomen bent? verlaat dan a.u.b deze site.
-        </p>
-        <br>
-        <p>
-            Bent u ingelogd en ziet u deze pagina nog? Bent u ingelogd en ziet u geen gegevens gegevens staan in uw account, 
-            of is er iets anders mis met het systeem? Neem dan contact op met de systeembeheerder of installateur.
-        </p>
+    {% if user.is_authenticated %}
+    <div class="dashboard">
+        <div class="title">
+            <h1>Dashboard</h1>
+        </div>
+        {% if meting_id == None %}
+        <div class="content">
+            <div class="left">
+                <div class="row rowA">
+                    <h2>Delta-meting-1:</h2>
+                    <div class="data dataA">
+                        <div class="DA1">T1: {{ meting_status.TA1}}°C</div>
+                        <div class="DA2">T2: {{ meting_status.TA2}}°C</div>
+                        <div class="DA1-2">Delta: {{ meting_status.TA1_2}}°C</div>
+                    </div>
+                </div>
+                <div class="row rowB">
+                    <h2>Delta-meting-2:</h2>
+                    <div class="data dataB">
+                        <div class="DB1">T1: {{ meting_status.TB1}}°C</div>
+                        <div class="DB2">T2: {{ meting_status.TB2}}°C</div>
+                        <div class="DB1-2">Delta: {{ meting_status.TB1_2}}°C</div>
+                    </div>
+                </div>
+                <div class="row rowC">
+                    <h2>Delta-meting-3:</h2>
+                    <div class="data dataC">
+                        <div class="DC1">T1: {{ meting_status.TC1}}°C</div>
+                        <div class="DC2">T2: {{ meting_status.TC2}}°C</div>
+                        <div class="DC1-2">Delta: {{ meting_status.TC1_2}}°C</div>
+                    </div>
+                </div>
+                <div class="row rowD">
+                    <h2>Delta-meting-4:</h2>
+                    <div class="data dataD">
+                        <div class="DD1">T1: {{ meting_status.TD1}}°C</div>
+                        <div class="DD2">T2: {{ meting_status.TD2}}°C</div>
+                        <div class="DD1-2">Delta: {{ meting_status.TD1_2}}°C</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="row rowE">
+                    <h2>Flow-1:</h2>
+                    <div class="data dataE">
+                        <div class="DE">{{ meting_status.flow_1}} Liter/minuut</div>
+                    </div>
+                </div>
+                <div class="row rowF">
+                    <h2>Flow-2:</h2>
+                    <div class="data dataF">
+                        <div class="DF">{{ meting_status.flow_2}} Liter/minuut</div>
+                    </div>
+                </div>
+                <div class="row rowG">
+                    <h2>Flow-3:</h2>
+                    <div class="data dataG">
+                        <div class="DG">{{ meting_status.flow_3}} Liter/minuut</div>
+                    </div>
+                </div>
+                <div class="row rowH2">
+                    <h2>Flow-H2:</h2>
+                    <div class="data dataH2">
+                        <div class="DH2">{{ meting_status.flow_H2}} Liter/minuut</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="error">
+            <p>Er zijn geen metingen aan dit account gekoppeld.</p>
+        </div>
+        {% endif %}
     </div>
+    {% else %}
+    <div class="body">
+        <div class="introText">
+            <h1>Welkom!</h1>
+            <p>
+                Dit is de homepagina van het H2Smart-System, log in om uw gegevens te zien.
+            </p>
+            <br>
+            <p>
+                Bent u op de verkeerde site, weet u niet wat u hier doet of hoe u hier gekomen bent? verlaat dan a.u.b deze site.
+            </p>
+            <br>
+            <p>
+                Bent u ingelogd en ziet u deze pagina nog? Bent u ingelogd en ziet u geen gegevens gegevens staan in uw account, 
+                of is er iets anders mis met het systeem? Neem dan contact op met de systeembeheerder of installateur.
+            </p>
+        </div>
+    </div>
+    {% endif %}
 </main>
