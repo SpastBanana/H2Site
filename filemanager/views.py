@@ -12,13 +12,13 @@ def fileView(request):
     path = settings.BASE_DIR / 'static/excel-data'
     dir_list = os.listdir(path)
     args = {'page': 'files.html', 'dirs': dir_list}
-    return render(request, 'default.html', args)
+    return render(request, 'filemanager.html', args)
 
 def openfolderView(request, urlDir):
     path = settings.BASE_DIR / 'static/excel-data' / urlDir
     fileList=os.listdir(path)
     args = {'page': 'openfolder.html', 'files': fileList, 'dir': urlDir}
-    return render(request, 'default.html', args)
+    return render(request, 'filemanager.html', args)
 
 def downloadile(request, urlDir, urlFile):
     # fill these variables with real values

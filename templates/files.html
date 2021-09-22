@@ -6,7 +6,17 @@
 </head>
 
 <main>
-    {% for dir in dirs %}
-    <a href="/filemanager/openfolder/{{dir}}">{{dir}}</a>
-    {% endfor %}
+    {% if user.is_authenticated %}
+    <div class="grid">
+        {% for dir in dirs %}
+        <a class="dirBox {{dir}}" href="/filemanager/openfolder/{{dir}}">
+            <p>{{dir}}</p>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="div">
+        <p class="loginMSG">Om deze pagina te bekijken moet u eerst <a href="/login">inloggen</a>.</p>
+    </div>
+    {% endif %}
 </main>

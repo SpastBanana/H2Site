@@ -23,10 +23,11 @@
                     <div class="navlist">
                         <a href="/">Dashboard</a>
                         <a href="/profiel">Profiel</a>
-                        {% if user.is_superuser %}
-                            <a href="/admin">admin</a>
-                        {% endif %}
+                        <a href="/filemanager">Filemanager</a>
                         <a href="/logout">Logout</a>
+                        {% if user.is_superuser %}
+                        <a href="/admin">admin</a>
+                        {% endif %}
                     </div>
                 </div>
         
@@ -52,9 +53,11 @@
                 <div class="mobileNavlist">
                     <a href="/">Dashboard</a>
                     <a href="/profiel">Profiel</a>
+                    <a href="/filemanager">Filemanager</a>
                     <a href="/logout">Logout</a>
+                    {% if user.is_superuser %}
                     <a href="/admin">admin</a>
-                    <a href="/logout">Logout</a>
+                    {% endif %}
                 </div>
             {% else %}
         
