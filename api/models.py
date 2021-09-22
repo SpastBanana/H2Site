@@ -41,4 +41,4 @@ class deltaStatus(models.Model):
         return self.meting_id
 
     class Meta:
-        verbose_name_plural = "delta en flow meting"
+        verbose_name_plural = "Metingen"
