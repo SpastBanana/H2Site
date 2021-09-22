@@ -35,7 +35,7 @@ def downloadFile(request, urlDir, urlFile):
     # Define text file name
     filename = urlFile
     # Define the full file path
-    filepath = settings.BASE_DIR / 'static/excel-data' / urlDir
+    filepath = settings.BASE_DIR / 'static/excel-data' / urlDir / urlFile
     # Open the file for reading content
     path = open(filepath, 'r')
     # Set the mime type
