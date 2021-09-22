@@ -23,7 +23,9 @@
                     <div class="navlist">
                         <a href="/">Dashboard</a>
                         <a href="/profiel">Profiel</a>
-                        <a href="/admin">admin</a>
+                        {% if user.is_superuser %}
+                            <a href="/admin">admin</a>
+                        {% endif %}
                         <a href="/logout">Logout</a>
                     </div>
                 </div>
