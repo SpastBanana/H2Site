@@ -1,0 +1,12 @@
+{% load static %}
+
+<head>
+    <script src='https://kit.fontawesome.com/1b028243f3.js'></script>
+    <link rel="stylesheet" href="{% static 'CSS/files.css' %}">
+</head>
+
+<main>
+    {% for file in files %}
+    <a href="/filemanager/openfolder/{{dir}}/download/{{file}}">{{file}}</a>
+    {% endfor %}
+</main>

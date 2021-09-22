@@ -9,6 +9,7 @@ urlpatterns = [
     path('home/', include('frontend.urls')),
     path('api/', include('api.urls')),
     path('', include('frontend.urls')),
+    path('filemanager/', include('filemanager.urls'))
 ]
 
 
