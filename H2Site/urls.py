@@ -11,4 +11,5 @@ urlpatterns = [
     path('', include('frontend.urls')),
 ]
 
+
 urlpatterns += staticfiles_urlpatterns()

@@ -113,3 +113,7 @@ def get_selected_delta_id(request, delta_ids_sep):
         selected_delta_id = delta_ids_sep[0]
 
     return selected_delta_id
+
+def downloadsView(request):
+    template_name = 'downloads.html'
+    return render(request, 'default.html', {'page': template_name})
