@@ -17,7 +17,7 @@ def fileView(request):
 def openfolderView(request, urlDir):
     path = settings.BASE_DIR / 'static/excel-data' / urlDir
     fileList=os.listdir(path)
-    args = {'page': 'openFolder.html', 'files': fileList, 'dir': urlDir}
+    args = {'page': 'openfolder.html', 'files': fileList, 'dir': urlDir}
     return render(request, 'default.html', args)
 
 def downloadile(request, urlDir, urlFile):
