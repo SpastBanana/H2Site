@@ -1,4 +1,4 @@
-"# H2Heating" 
+# H2Heating
 
-for activating the excelsheet function you need to remove the "#"
-in front of the line "# process.processData()" in manage.py
+## For activation of the excel sheet write function:
+Remove the **"#"** in **"manage.py"** from the line **"# process.processData()"**
