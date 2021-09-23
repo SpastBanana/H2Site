@@ -3,6 +3,9 @@
 import os
 import sys
 
+from django.core.management import execute_from_command_line
+from prosessing_data import process
+
 
 def main():
     """Run administrative tasks."""
@@ -20,3 +23,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # process.processData()
