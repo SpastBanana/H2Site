@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'api',
     'user_profile',
     'filemanager',
-    'prosessing_data',
 ]
 
 MIDDLEWARE = [

@@ -127,7 +127,7 @@
     .burg1.open {
         transform: rotate(45deg);
         position: relative;
-        top: 2vh;
+        top: 2.5vh;
         transition: all 0.5s;
     }
 
@@ -139,7 +139,7 @@
     .burg3.open {
         transform: rotate(-45deg);
         position: relative;
-        bottom: 2vh;
+        bottom: 2.5vh;
         transition: all 0.5s;
     }
 
