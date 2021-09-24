@@ -83,7 +83,7 @@
     }
 
     .login-box h1{
-        font-size: 40px;
+        font-size: 100px;
         text-transform: uppercase;
         color: whitesmoke;
     }
@@ -94,13 +94,14 @@
         border: none;
         border-bottom: solid gray 3px;
         margin-bottom: 10px;
+        font-size: 30px;
     }
 
     .submit {
         height: 6vh;
         width: 100%;
         color: whitesmoke;
-        font-size: 20px;
+        font-size: 50px;
         background: rgb(0, 199, 0);
         border: none;
         cursor: pointer;

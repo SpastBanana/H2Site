@@ -160,11 +160,11 @@
         align-items: center;
         justify-content: space-between;
         font-weight: 600;
-        font-size: 26px;
+        font-size: 28px;
     }
 
     h2 {
-        font-size: 35px;
+        font-size: 40px;
     }
 
     /* Home page not logged in */
@@ -182,7 +182,8 @@
         justify-content: space-evenly;
         flex-direction: column;
         height: auto;
-
+        width: auto;
+        padding: 80px;
     }
     
     h1 {
@@ -198,5 +199,7 @@
         font-weight: 700;
         background: #00a8f3;
         border-radius: 15px;
+        width: 90%;
+        margin-top: 80px;
     }
 }
