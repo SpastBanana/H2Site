@@ -18,13 +18,24 @@ while True:
     dataFile = basedir + '/static/excel-data/' + folderDate + '/' + fileDate + '.csv'
 
     #Make fake test vals
-    sendStuf = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    sendStuf = [2,0,0,1,3,4,0,0,1,3,4,0,0,1,3,4,0,0,1,3,4]
+    deltaT = 0
     i = 0
     while i <= 20:
-        if sendStuf[i] == 1:
+        if sendStuf[i] == 4:
+            sendStuf[i] = randint(20, 200)
+        elif sendStuf[i] == 3:
+            sendStuf[i] = randint(1, 20)
+        elif sendStuf[i] == 2:
             sendStuf[i] = writeTime
+        elif sendStuf[i] == 1:
+            if sendStuf[i-2] > sendStuf [i-1]:
+                deltaT = sendStuf[i-2] - sendStuf[i-1]
+            elif sendStuf[i-1] > sendStuf [i-2]:
+                deltaT = sendStuf[i-1] - sendStuf[i-2]
+            sendStuf[i] = deltaT
         elif sendStuf[i] == 0:
-            sendStuf[i] = randint(10, 100)
+            sendStuf[i] = randint(18, 30)
         i = i + 1
     
     

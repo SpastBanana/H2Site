@@ -5,6 +5,7 @@ import os
 from filemanager import urls
 from django.http import HttpResponse
 import mimetypes
+import datetime
 
 
 # Create your views here.
@@ -17,7 +18,7 @@ def fileView(request):
 def openfolderView(request, urlDir):
     path = settings.BASE_DIR / 'static/excel-data' / urlDir
     fileList=os.listdir(path)
-    args = {'page': 'openfolder.html', 'files': fileList, 'dir': urlDir}
+    args = {'page': 'openfolder.html', 'files': fileList, 'dir': urlDir, 'title': urlDir}
     return render(request, 'filemanager.html', args)
 
 def downloadile(request, urlDir, urlFile):

@@ -6,6 +6,9 @@
 </head>
 
 <main>
+    <div class="title">
+        <h1>{{title}}</h1>
+    </div>
     <div class="grid">
         {% for file in files %}
         <a class="fileBox {{file}}" href="/filemanager/openfolder/{{dir}}/download/{{file}}">
