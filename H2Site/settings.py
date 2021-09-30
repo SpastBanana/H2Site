@@ -136,7 +136,7 @@ LOGIN_URL = '/login'
 
 # LOCAL STATIC
 STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
-STATIC_ROOT = os.path.join(BASE_DIR, "static/") # new
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/") # new
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' # new
 
 # Default primary key field type
