@@ -7,6 +7,7 @@
         <title>H2Smart</title>
         <link rel="stylesheet" href="{% static 'CSS/default.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="{% static 'IMG/excel.png' %}">
     </head>
 
     <body>
@@ -162,4 +163,47 @@
         <script src="{% static 'JS/default.js' %}"></script>
     </body>
 </html>
+
+<script>
+
+    function recursiveAnimateTitle(string) {
+        let firstLetter = string[0];
+        let title = document.querySelector('title');
+        title.innerHTML += firstLetter;
+        if (string.length > 1) {
+            setTimeout(function() {
+            recursiveAnimateTitle(string.substring(1));
+            }, 200);
+        }
+    }
+
+    function animateTitle(string) {
+        document.querySelector('title').innerHTML = "";
+        recursiveAnimateTitle(string);
+    }
+
+    {#while (true){#}
+    {#    animateTitle('H2-SMART-SYSTEM - ©2021');#}
+
+    {# } #}
+
+    animateTitle('H2-SMART-SYSTEM - ©2021');
+
+
+    {#var i = 1;#}
+
+    {#function myLoop() {#}
+    {#    setTimeout(function() {#}
+    {#        console.log('hello');#}
+    {#        i++;#}
+    {#        if (i < 10) {#}
+    {#            myLoop();#}
+    {#        }#}
+    {#    }, 3000)#}
+    {# } #}
+
+    {#myLoop();#}
+
+</script>
+
 
