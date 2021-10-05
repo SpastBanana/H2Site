@@ -1,0 +1,120 @@
+/* Computer */
+@media only screen and (min-width: 1000px) {
+    main {
+        height: 80vh;
+    }
+
+    .box {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    h1 {
+        text-decoration: underline;
+        margin-bottom: -10vh;
+        font-size: 5vh;
+    }
+
+    .profileInfo {
+        display: flex;
+        height: 60vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        color: whitesmoke;
+    }
+
+    .nameTag, .mailTag, .indexTag {
+        height: 10vh;
+        width: 30vw;
+        background: #00a8f3;
+        display: flex;
+        align-items: left;
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: 2vh;
+        border-radius: 10px;
+    }
+
+    .name, .mail, .index {
+        font-size: 2.5vh;
+        font-weight: 700;
+    }
+
+    .loginMSG {
+        margin-bottom: 20vh;
+        font-size: 4vh;
+        background: red;
+        padding: 5vh;
+        border-radius: 20px;
+        font-weight: 600;
+        color: whitesmoke;
+    }
+}
+
+
+/* Phone */
+@media only screen and (max-width: 1000px) {
+    main {
+        height: 80vh;
+    }
+
+    .box {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    h1 {
+        text-decoration: underline;
+        margin-bottom: -10vh;
+        font-size: 5vh;
+    }
+
+    .profileInfo {
+        display: flex;
+        height: 60vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        color: whitesmoke;
+    }
+
+    .nameTag, .mailTag, .indexTag {
+        height: 10vh;
+        width: 75vw;
+        background: #00a8f3;
+        display: flex;
+        align-items: left;
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: 2vh;
+        border-radius: 10px;
+    }
+
+    .name, .mail, .index {
+        font-size: 3vh;
+        font-weight: 700;
+    }
+
+    .nameInsert, .mailInsert, .indexInsert {
+        font-size: 1.8vh;
+        font-weight: 600;
+    }
+
+    .loginMSG {
+        margin-bottom: 10vh;
+        font-size: 4vh;
+        background: red;
+        padding: 5vh;
+        border-radius: 20px;
+        font-weight: 600;
+        color: whitesmoke;
+        width: 60%;
+    }
+}
