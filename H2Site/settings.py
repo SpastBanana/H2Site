@@ -91,6 +91,13 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,13 +136,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 # SECURE_SSL_REDIRECT = True
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/login'
 
 # LOCAL STATIC
+<<<<<<< HEAD
 STATICFILES_DIRS = (str(BASE_DIR.joinpath('static/')),) # new
+=======
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
+>>>>>>> 3f925653eeafbc4cd7712af2e741057a81cafc87
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/") # new
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' # new
 
