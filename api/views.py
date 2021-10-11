@@ -13,45 +13,41 @@ class createdeltaStatus(APIView):
 
     def post(self, request, format=None):
         try:
-            #Decode Message
-            payload_enc = request.data[1]["ds"]
-            payload = bytes.fromhex(payload_enc).decode('utf-8')
+            payload = request.data["payload"]
 
-            #Split message
             values = []
-            for i in range(0, len(payload), 2):
-                value_enc = payload[i:i + 2]
-                value = int(value_enc, 16)
-                values.append(value)
+            for i in range(0, len(payload), 4):
+                value_enc = payload[i:i + 4]
+                value = float(value_enc)
+                valueFloat = value / 100
+                values.append(valueFloat)
 
             TA1 = values[0]
             TA2 = values[1]
-            TA1_2 = values[2]
-            TAP = values[3]
+            TB1 = values[2]
+            TB2 = values[3]
+            TC1 = values[4]
+            TC2 = values[5]
+            TD1 = values[6]
+            TD2 = values[7]
 
-            TB1 = values[4]
-            TB2 = values[5]
-            TB1_2 = values[6]
-            TBP = values[7]
-
-            TC1 = values[8]
-            TC2 = values[9]
+            TA1_2 = values[8]
+            TB1_2 = values[9]
             TC1_2 = values[10]
-            TCP = values[11]
+            TD1_2 = values[11]
 
-            TD1 = values[12]
-            TD2 = values[13]
-            TD1_2 = values[14]
-            TDP = values[15]
+            flow_1 = values[12]
+            flow_2 = values[13]
+            flow_3 = values[14]
+            flow_H2 = values[15]
 
-            flow_1 = values[16]
-            flow_2 = values[16]
-            flow_3 = values[16]
-            flow_H2 = values[16]
+            TAP = values[16]
+            TBP = values[17]
+            TCP = values[18]
+            TDP = values[19]
 
-
-            # meting_id = request.headers.get('metingid').upper()
-            delta_status = deltaStatus( #meting_id=meting_id,
+            meting_id = request.headers.get('metingid').upper()
+            delta_status = deltaStatus(meting_id=meting_id,
                                         TA1=TA1, TA2=TA2, TA1_2=TA1_2,TAP=TAP,
                                         TB1=TB1, TB2=TB2, TB1_2=TB1_2, TBP=TBP,
                                         TC1=TC1, TC2=TC2, TC1_2=TC1_2, TCP=TCP,
