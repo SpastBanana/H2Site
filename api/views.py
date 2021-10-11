@@ -36,7 +36,6 @@ class createdeltaStatus(APIView):
             TC1_2 = values[10]
             TD1_2 = values[11]
 
-<<<<<<< HEAD
             flow_1 = values[12]
             flow_2 = values[13]
             flow_3 = values[14]
@@ -49,21 +48,6 @@ class createdeltaStatus(APIView):
 
             meting_id = request.headers.get('metingid').upper()
             delta_status = deltaStatus(meting_id=meting_id,
-=======
-            flow_1 = values[16]
-            flow_2 = values[17]
-            flow_3 = values[18]
-            flow_H2 = values[19]
-
-            test1 = values[20]
-            test2 = values[21]
-            test3 = values[22]
-            test4 = values[23]
-
-
-            meting_id = request.headers.get('metingid').upper()
-            delta_status = deltaStatus( meting_id=meting_id,
->>>>>>> 3f925653eeafbc4cd7712af2e741057a81cafc87
                                         TA1=TA1, TA2=TA2, TA1_2=TA1_2,TAP=TAP,
                                         TB1=TB1, TB2=TB2, TB1_2=TB1_2, TBP=TBP,
                                         TC1=TC1, TC2=TC2, TC1_2=TC1_2, TCP=TCP,
