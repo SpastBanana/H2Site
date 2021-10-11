@@ -53,7 +53,6 @@ class createdeltaStatus(APIView):
                                         TC1=TC1, TC2=TC2, TC1_2=TC1_2, TCP=TCP,
                                         TD1=TD1, TD2=TD2, TD1_2=TD1_2, TDP=TDP,
                                         flow_1=flow_1, flow_2=flow_2, flow_3=flow_3, flow_H2=flow_H2,
-                                        test1=test1, test2=test2, test3=test3, test4=test4,
                                         )
             delta_status.save()
             return Response({'Good request': 'saved'}, status=status.HTTP_200_OK)
