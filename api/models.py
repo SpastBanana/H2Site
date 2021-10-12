@@ -35,12 +35,6 @@ class deltaStatus(models.Model):
     flow_3 = models.FloatField() #Vloerverwarming
     flow_H2 = models.FloatField() #Waterstof
 
-    #test
-    test1 = models.FloatField()
-    test2 = models.FloatField()
-    test3 = models.FloatField()
-    test4 = models.FloatField()
-
 
 
     def __str__(self):
