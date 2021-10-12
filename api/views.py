@@ -18,8 +18,8 @@ class createdeltaStatus(APIView):
             values = []
             for i in range(0, len(payload), 4):
                 value_enc = payload[i:i + 4]
-                value = float(value_enc)
-                valueFloat = value / 100
+                value = int(value_enc)
+                valueFloat = value
                 values.append(valueFloat)
 
             TA1 = values[0]
