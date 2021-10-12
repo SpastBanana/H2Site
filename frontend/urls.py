@@ -10,4 +10,6 @@ urlpatterns = [
     path('profiel', views.profielView, name='Profiel'),
     path('dashboard', views.dashboardView, name='Dashboard'),
     path('downloads', views.downloadsView, name='Downloads'),
+    path('data-analytics', views.dataAnalyticsView, name='Data-Analytics'),
+    path('logboek', views.logboekView, name='Logboek'),
 ]
