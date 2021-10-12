@@ -1,0 +1,214 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+
+    <title>Logboek</title>
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<script>
+
+    function pageLoad() {
+        setCheckboxValues();
+        setMetingId();
+        setDate();
+    }
+
+    function filter(page){
+        var href = new URL(window.location.href);
+        var meting_id = document.getElementById("meting_id_filter").value;
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
+        var filtered_column_names = getSelectedCheckboxValues("column_names_filter_box");
+        if (filtered_column_names.length === 0){
+            params = new URLSearchParams({
+                'meting_id': meting_id,
+                'startDate': startDate,
+                'endDate': endDate,
+            })
+        } else {
+            params = new URLSearchParams({
+                'meting_id': meting_id,
+                'column_names': getSelectedCheckboxValues("column_names_filter_box"),
+                'startDate': startDate,
+                'endDate': endDate,
+            })
+        }
+        href.search = params;
+        window.location.replace(href.href);
+        return false;
+    }
+
+    function getSelectedCheckboxValues(name) {
+        const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+        let values = [];
+        checkboxes.forEach((checkbox) => {
+            values.push(checkbox.value);
+        });
+        return values;
+    }
+
+    function setCheckboxValues() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const column_names_str = urlParams.get('column_names');
+        if (column_names_str > 0) {
+            const column_names = column_names_str.split(',');
+            column_names.forEach((column_name) => {
+                const checkbox = document.querySelector(`input[type='checkbox'][value="${column_name}"]`);
+                checkbox.checked = true;
+            })
+        }
+    }
+
+    function setMetingId() {
+        document.getElementById("meting_id_filter").value = "{{ meting_id }}";
+    }
+
+    function setDate() {
+        document.getElementById("startDate").value = "{{ start_date }}";
+        document.getElementById("endDate").value = "{{ end_date }}";
+    }
+
+
+    var expanded;
+    document.onclick = function(e){
+        var checkboxes = document.getElementById("checkboxes");
+        if (expanded) {
+            console.log(e.target.id)
+            if(e.target.id !== "target_checkbox"){
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        } else {
+            console.log(e.target.id)
+            if(e.target.id === "target_column_names_filter"){
+                checkboxes.style.display = "block";
+                expanded = true;
+            }
+        }
+    }
+
+
+    {# Datepicker #}
+    $(function () {
+        $.datetimepicker.setLocale('nl');
+        $("#startDate").datetimepicker({
+            format: 'd/m/Y H:i',
+            lang:'nl'
+        });
+    });
+    $(function () {
+        $.datetimepicker.setLocale('nl');
+        $("#endDate").datetimepicker({
+            format: 'd/m/Y H:i',
+            lang:'nl'
+        });
+    });
+
+</script>
+
+<body onload="pageLoad()">
+    <div class="content">
+        <div class="header">
+            <h1 class="pagetitle" id="welkoms-bericht">Logboek</h1>
+        </div>
+        {% if user.is_authenticated %}
+            {% if meting_ids != None %}
+                <form id="filter-bar">
+                    <div class="custom-select">
+                    <p id="titel">Meting</p>
+                        <select id="meting_id_filter" >
+                            <div class="dropdown">
+                                {% for meting in meting_ids %}
+                                    <option id="opt" value="{{ meting }}">{{ meting }}</option>
+                                {% endfor %}
+                            </div>
+                        </select>
+                    </div>
+                    <div class="multiselect">
+                    <p id="titel">Statussen</p>
+                        <div  class="selectBox">
+                            <select id="column_names_filter">
+                                <option>Data Filter</option>
+                            </select>
+                            <div id="target_column_names_filter" class="overSelect"></div>
+                        </div>
+                        <div class="dropdown" id="checkboxes">
+                            {% for name in column_names_all %}
+                                <label id="target_checkbox">
+                                    <input id="target_checkbox" class="inputbox" name="column_names_filter_box" type="checkbox" value="{{ name.0 }}" />{{ name.1 }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {# Date selector #}
+                    <div>
+                        <p id="titel">Begin</p>
+                        <input id="startDate" type="text" class="daterange">
+                    </div>
+                    <div>
+                        <p id="titel">Eind</p>
+                        <input id="endDate" type="text" class="daterange">
+                    </div>
+
+                    {# Filter button#}
+                    <div>
+                        <button class="btn1" onclick="return filter()">Filter</button>
+                    </div>
+                </form>
+                {{ error }}
+                <br>
+                {% if meting_statusses == None %}
+                    <p>Selecteer een meting a.u.b.</p>
+                {% elif  meting_statusses|length > 0 %}
+
+                    <table class="tablelogboek">
+                        <thead class="trlogboek">
+                            {% for name in column_names %}
+                                <td class="tdlogboek">{{ name.1 }}</td>
+                            {% endfor %}
+                        </thead>
+                        {% for status in meting_statusses %}
+                            <tr>
+                                {% for value in status %}
+                                    <th class="thlogboek">{{ value }}</th>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="pagination" id="logboekpage">
+                        {% for page in pagelist %}
+                            <a onclick="filter({{ page }})">{{ page }}</a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p id="error-else">Er zijn geen logboekgegevens beschikbaar van deze meting {{ meting_id }}.</p>
+                {% endif %}
+             {% else %}
+                <p id="error-else">Er is geen meting aan dit account gekoppeld.</p>
+            {% endif %}
+        {% else %}
+            <p id="error-else">Om de status van uw meting(en) te zien moet u eerst <a href="/login" style="color: white">inloggen</a>.</p>
+        {% endif %}
+    </div>
+</body>
+
