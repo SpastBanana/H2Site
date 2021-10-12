@@ -1,0 +1,26 @@
+{% load static %}
+
+<head>
+    <script src='https://kit.fontawesome.com/1b028243f3.js'></script>
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+</head>
+
+
+<main>
+    {% if user.is_authenticated %}
+    <br>
+    <h1 id="welkoms-bericht">Welkom {{ user.username }}</h1>
+    <h1 id="welkoms-bericht">je bent al ingelogd</h1>
+    {% else %}
+    <div class="login-box">
+        <h1>Login</h1>
+        <p>{{ error }}</p>
+        <form method="POST" content_type='application/json'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="errormsg">{{ error }}</p>
+            <button class="submit" type="submit" value=Submit">Login</button>
+        </form>
+    </div>
+    {% endif %}
+</main>

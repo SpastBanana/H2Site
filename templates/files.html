@@ -1,0 +1,22 @@
+{% load static %}
+
+<head>
+    <script src='https://kit.fontawesome.com/1b028243f3.js'></script>
+    <link rel="stylesheet" href="{% static 'CSS/files.css' %}">
+</head>
+
+<main>
+    {% if user.is_authenticated %}
+    <div class="grid">
+        {% for dir in dirs %}
+        <a class="dirBox {{dir}}" href="/filemanager/openfolder/{{dir}}">
+            <p>{{dir}}</p>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="div">
+        <p class="loginMSG">Om deze pagina te bekijken moet u eerst <a href="/login">inloggen</a>.</p>
+    </div>
+    {% endif %}
+</main>
