@@ -12,4 +12,5 @@ urlpatterns = [
     path('downloads', views.downloadsView, name='Downloads'),
     path('data-analytics', views.dataAnalyticsView, name='Data-Analytics'),
     path('logboek', views.logboekView, name='Logboek'),
+    path('ass', views.liveData, name='kont')
 ]

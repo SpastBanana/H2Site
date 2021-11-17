@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'channels',
 
     #Own created
     'frontend',
@@ -79,6 +80,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'H2Site.wsgi.application'
+ASGI_APPLICATION = 'H2Site.asgi.application'
 
 
 # Database

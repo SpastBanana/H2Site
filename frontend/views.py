@@ -339,3 +339,10 @@ class Chart:
         self.name = name
         self.x = x
         self.y = y
+
+
+def liveData(request):
+    context = {
+        'countAss':'Hello World',
+    }
+    return render(request, 'ass.html', context)
