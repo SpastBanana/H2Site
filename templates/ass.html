@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ass</title>
+</head>
+<body>
+<h1>Aantal counts:</h1>
+<h1 id="kont">{{ countAss }}</h1>
+</body>
+<script>
+    const socket = new WebSocket("ws://" + window.location.host + "/");
+
+    socket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        document.querySelector('#kont').innerText = data.message;
+    }
+</script>
+</html>
