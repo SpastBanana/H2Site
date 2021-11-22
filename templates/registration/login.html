@@ -7,19 +7,20 @@
 
 
 <main>
-    {% if user.is_authenticated %}
-    <br>
-    <h1 id="welkoms-bericht">Welkom {{ user.username }} je bent al ingelogd</h1>
-    {% else %}
+    {% if not user.is_authenticated %}
     <div class="login-box">
+    {% csrf_token %}
         <h1>Login</h1>
         <p>{{ error }}</p>
         <form method="POST" content_type='application/json'>
-            {% csrf_token %}
+
             {{ form.as_p }}
             <p class="errormsg">{{ error }}</p>
             <button class="submit" type="submit" value=Submit">Login</button>
         </form>
     </div>
+    {% else %}
+    <br>
+    <h1 id="welkoms-bericht">Welkom {{ user.username }} je bent al ingelogd</h1>
     {% endif %}
 </main>
