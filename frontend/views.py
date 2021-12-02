@@ -7,6 +7,13 @@ import datetime as datetime
 import numpy as np
 
 def indexView(request):
+    if request.user.is_authenticated:
+        template_name = 'dashboard.html'
+    elif not request.user.is_authenticated:
+        template_name = 'index.html'
+    else:
+        template_name = 'notExist.html'
+
     if not request.user.is_anonymous:
         meting_ids = request.user.profile.meting_ids
         if meting_ids is not None:
@@ -15,15 +22,14 @@ def indexView(request):
 
             delta_statusses = deltaStatus.objects.filter(meting_id=selected_meting_id).order_by('time').reverse()
             if len(delta_statusses) > 0:
-                args = {'page':'index.html', 'delta_status': delta_statusses[0], 'meting_id': selected_meting_id}
+                args = {'page': template_name, 'delta_status': delta_statusses[0], 'meting_id': selected_meting_id}
                 return render(request, 'default.html', args)
             else:
-                args = {'page': 'index.html', 'meting_id': meting_ids}
+                args = {'page': template_name, 'meting_id': meting_ids}
                 return render(request, 'default.html', args)
 
     # args = {'page': 'index.html',}
     # return render(request, 'default.html', args)
-    template_name = 'index.html'
     return render(request, 'default.html', {'page': template_name})
 
 def registerView(request):
@@ -49,7 +55,7 @@ def loginView(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('Home')
+                    return redirect('/')
                 else:
                     form = LoginForm
                     return render(request, 'default.html', {'page': 'registration/login.html', 'form': form, 'error': 'Account is not activated'})
@@ -281,7 +287,7 @@ def dataAnalyticsView(request):
                 charts = None
 
             # Render template
-            args = {'page':'data-analytics.html',
+            args = {'page': 'data-analytics.html',
                     'meting_statusses': status_matrix,
                     'meting_ids': meting_ids_sep,
                     'column_names': column_names,
@@ -297,6 +303,125 @@ def dataAnalyticsView(request):
     args = {'page': 'data-analytics.html'}
     return render(request, 'default.html', args)
 
+
+def testChartView(request):
+    if not request.user.is_anonymous:
+        meting_ids = request.user.profile.meting_ids
+
+        # check if user has meting ids in profile
+        if meting_ids is not None:
+            # Sepperate meting ids
+            meting_ids_sep = meting_ids.replace(" ","").split(";")
+            meting_ids_sep = [n for n in meting_ids_sep if len(n) > 0] # Filter spaces
+
+            # Get querys from request
+            selected_meting_id = request.GET.get('meting_id')
+            selected_column_names_unf = request.GET.get('column_names')
+            selected_startDate_unf = request.GET.get("startDate")
+            selected_endDate_unf = request.GET.get("endDate")
+
+            # Check if user filtered on meting id else set selected meting id to first meting id in profile
+            if selected_meting_id is None:
+                selected_meting_id = meting_ids_sep[0]
+
+            if (selected_startDate_unf is None) or (selected_endDate_unf is None):
+                now = datetime.datetime.now()
+                start_date = datetime.datetime(now.year,now.month,now.day,0,0)
+                end_date = datetime.datetime(now.year,now.month,now.day,23,59)
+            else:
+                start_date = datetime.datetime.strptime(selected_startDate_unf, '%d/%m/%Y %H:%M')
+                end_date = datetime.datetime.strptime(selected_endDate_unf, '%d/%m/%Y %H:%M')
+            date = (start_date, end_date)
+
+            # Get all meting statusses with selected meting id and selected date range
+            meting_statusses = deltaStatus.objects.filter(meting_id=selected_meting_id, time__range=date).order_by('time').reverse()
+
+            # Get all possible variables in model
+            column_names_all_unf_unfilt = [f.name for f in deltaStatus._meta.get_fields()]
+            arr = np.array(list(column_names_all_unf_unfilt))
+            filter_arr = []
+            for element in arr:
+                if ((element == "meting_id") or (element == "time") or (element == 'id')):
+                    filter_arr.append(False)
+                else:
+                    filter_arr.append(True)
+            column_names_all_unf = arr[filter_arr]
+            column_names_all = format_column_names(column_names_all_unf)
+
+            # Check if there are statusses with selected meting id
+            status_matrix, column_names_form = [],[]
+            if len(meting_statusses) > 0:
+                # Check if user filtered on columns else use all column names
+                if selected_column_names_unf is None:
+                    column_names = column_names_all
+                else:
+                    column_names_unf = selected_column_names_unf.split(",")
+                    column_names = format_column_names(column_names_unf)
+
+                # Create table matrix
+                for status in meting_statusses:
+                    row = []
+                    dict = vars(status)
+                    for name in column_names:
+                        row.append(dict[name[0]])
+                    status_matrix.append(row)
+
+                charts = []
+                deltacharts = []
+                state = True
+
+                for i in range(len(column_names)):
+                    name_list = column_names[i]
+                    name = name_list[0]
+                    x, y = [], []
+                    y1, y2, y3 = [], [], []
+                    if name[0:1] == "T" and state is True:
+                        state = False
+                        for s in range(len(status_matrix)):
+                            row = status_matrix[s]
+                            valx = meting_statusses[s].time.strftime('%Y-%m-%dT%H:%M:%S')
+                            valy1 = float(row[i])
+                            valy2 = float(row[i+1])
+                            valy3 = float(row[i+2])
+                            x.append(valx)
+                            y1.append(valy1)
+                            y2.append(valy2)
+                            y3.append(valy3)
+                            deltaname = "Delta meting: " + str(name[0:2])
+                            deltachart = DeltaChart(deltaname, x, y1, y2, y3)
+                            deltacharts.append(deltachart)
+                    elif not name[0:1] == "T":
+                        state = True
+                        for s in range(len(status_matrix)):
+                            row = status_matrix[s]
+                            valx = meting_statusses[s].time.strftime('%Y-%m-%dT%H:%M:%S')
+                            valy = float(row[i])
+                            x.append(valx)
+                            y.append(valy)
+                            chart = Chart(name, x, y)
+                            charts.append(chart)
+            else:
+                column_names = None
+                charts = None
+                deltacharts = None
+
+            # Render template
+            args = {'page': 'testcharts.html',
+                    'meting_statusses': status_matrix,
+                    'meting_ids': meting_ids_sep,
+                    'column_names': column_names,
+                    'meting_id': selected_meting_id,
+                    'column_names_all': column_names_all,
+                    'charts': charts,
+                    'deltaCharts': deltacharts,
+                    'start_date': start_date.strftime('%d/%m/%Y %H:%M'),
+                    'end_date': end_date.strftime('%d/%m/%Y %H:%M'),
+                    }
+            return render(request, 'default.html', args)
+
+    # Render template without statusses and without meting id
+    args = {'page': 'testcharts.html'}
+    return render(request, 'default.html', args)
 
 
 # FUNCTIONS
@@ -339,6 +464,15 @@ class Chart:
         self.name = name
         self.x = x
         self.y = y
+
+
+class DeltaChart:
+    def __init__(self, name, x, y1, y2, y3):
+        self.name = name
+        self.x = x
+        self.y1 = y1
+        self.y2 = y2
+        self.y3 = y3
 
 
 def liveData(request):

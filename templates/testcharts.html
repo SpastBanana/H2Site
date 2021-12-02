@@ -23,7 +23,6 @@
 
 <style>
     main {
-        margin-top: 6vw;
         background: white;
     }
 </style>
@@ -128,7 +127,7 @@
 
 </script>
 
-<body onload="pageLoad()">
+<main onload="pageLoad()">
     <div class="content">
         <h1 id="welkoms-bericht">Data-analytics</h1>
         <br>
@@ -199,36 +198,115 @@
             <p id="error-else">Om de status van uw meting(en) te zien moet u eerst <a href="/login" style="color: white">inloggen</a>.</p>
         {% endif %}
     </div>
-</body>
-
+</main>
 
 <script>
     {% autoescape off %}
-    {% for chart in charts %}
-        setChart("{{ chart.name }}", {{ chart.x }}, {{ chart.y }})
+    {% for a in deltaCharts %}
+        deltaChart("{{ a.name }}", {{ a.x }}, {{ a.y1 }}, {{ a.y2 }}, {{ a.y3 }});
+    {% endfor %}
+    {% for b in charts %}
+        singleChart("{{ b.name }}", {{ b.x }}, {{ b.y }});
     {% endfor %}
     {% endautoescape %}
 
 
-    function setChart(name, x, y) {
+    function deltaChart(name, x, y1, y2, y3) {
         console.log(x)
         var ctx1 = document.getElementById(name).getContext('2d');
         var myChart = new Chart(ctx1, {
             {#type: 'line',#}
             data: {
                 labels: x,
-                datasets: [{
-                    type: 'line',
-                    label: name,
-                    data: y,
-                    backgroundColor: [
-                        'rgba(54,72,107, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(54,72,107)',
-                    ],
-                    borderWidth: 1
-                }]
+                datasets: [
+                    {
+                        label: name,
+                        data: y1,
+                        type: 'bar',
+                        backgroundColor: [
+                            'red',
+                        ],
+                        borderColor: [
+                            'red',
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: name,
+                        data: y2,
+                        type: 'bar',
+                        backgroundColor: [
+                            'green',
+                        ],
+                        borderColor: [
+                            'green',
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: name,
+                        data: y3,
+                        type: 'line',
+                        backgroundColor: [
+                            'blue',
+                        ],
+                        borderColor: [
+                            'blue',
+                        ],
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                {#animations: {#}
+                {#    tension: {#}
+                {#        duration: 1000,#}
+                {#        easing: 'linear',#}
+                {#        from: 1,#}
+                {#        to: 0,#}
+                {#        loop: true#}
+                {#    }#}
+                {# }, #}
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            displayFormats: {
+                                second: "MMM dd"
+                            },
+                        },
+                    },
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                }
+            }
+        });
+    }
+
+    function singleChart(name, x, y) {
+        console.log(x)
+        var ctx1 = document.getElementById(name).getContext('2d');
+        var myChart = new Chart(ctx1, {
+            {#type: 'line',#}
+            data: {
+                labels: x,
+                datasets: [
+                    {
+                        label: name,
+                        data: y,
+                        type: 'bar',
+                        backgroundColor: [
+                            'red',
+                        ],
+                        borderColor: [
+                            'red',
+                        ],
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
                 {#animations: {#}
