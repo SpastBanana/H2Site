@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="281e737c-d6fa-411a-ac4e-09822016b6d1" name="Changes" comment="" />
+    <list default="true" id="281e737c-d6fa-411a-ac4e-09822016b6d1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +36,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3b559f01-0b32-439b-b14d-2d3a8416c095" name="Changes" comment="" />
+      <changelist id="281e737c-d6fa-411a-ac4e-09822016b6d1" name="Changes" comment="" />
       <created>1638278258549</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -43,6 +48,7 @@
       <workItem from="1638427349382" duration="2147000" />
       <workItem from="1638431979088" duration="598000" />
       <workItem from="1638438513535" duration="3667000" />
+      <workItem from="1644248957854" duration="1376000" />
     </task>
     <servers />
   </component>

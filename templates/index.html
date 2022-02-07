@@ -6,7 +6,11 @@
 </head>
 
 <main>
-{#    {% if user.is_authenticated %}#}
+    {% if user.is_authenticated %}
+        <h1>test</h1>
+    {% else %}
+        <h1>test2</h1>
+    {% endif %}
 {#    <div class="dashboard">#}
 {#        <div class="title">#}
 {#            <h1>Dashboard</h1>#}

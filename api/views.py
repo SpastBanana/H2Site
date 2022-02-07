@@ -1,3 +1,5 @@
+import traceback
+
 from rest_framework import generics, status
 from rest_framework.views import APIView
 
@@ -21,10 +23,9 @@ class createdeltaStatus(APIView):
             values = []
             for i in range(0, len(payload), 4):
                 value_enc = payload[i:i + 4]
-                value = float(value_enc)
+                value = float("".join(value_enc))
                 valueFloat = value / 100
                 values.append(valueFloat)
-
 
 
             WP_IN = values[0]
@@ -70,7 +71,7 @@ class createdeltaStatus(APIView):
             delta_status.save()
             return Response({'Good request': 'saved'}, status=status.HTTP_200_OK)
         except:
-            return Response({'Failed': 'bad request'}, status=status.HTTP_409_CONFLICT)
+            return Response({'Failed': 'bad request', 'traceback': traceback.format_exc()}, status=status.HTTP_409_CONFLICT)
 
 
 
