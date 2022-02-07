@@ -21,12 +21,10 @@
                         </a>
                     </div>
                     <div class="navlist">
-                        <a href="/">Dashboard</a>
-                        <a href="/logboek">Logboek</a>
-                        <a href="/data-analytics">Data-Analytics</a>
-                        <a href="/profiel">Profiel</a>
-                        <a href="/filemanager">Filemanager</a>
-                        <a href="/logout">Logout</a>
+                        <a{% if request.get_full_path == '/' %} class="current" {% endif %} href="/"><div class="point"><div class="dot"></div></div><div class="tagName">Dashboard</div></a>
+                        <a{% if request.get_full_path == '/profiel' %} class="current" {% endif %} href="/profiel"><div class="point"><div class="dot"></div></div><div class="tagName">Profiel</div></a>
+                        <a{% if request.get_full_path == '/filemanager' %} class="current" {% endif %} href="/filemanager"><div class="point"><div class="dot"></div></div><div class="tagName">Filemanager</div></a>
+                        <a{% if request.get_full_path == '/logout' %} class="current" {% endif %} href="/logout"><div class="point"><div class="dot"></div></div><div class="tagName">Logout</div></a>
                         {% if user.is_superuser %}
                         <a href="/admin">admin</a>
                         {% endif %}
@@ -73,9 +71,9 @@
                         </a>
                     </div>
                     <div class="navlist">
-                        <a href="/">Home</a>
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
+                        <a{% if request.get_full_path == '/' %} class="current" {% endif %} href="/"><div class="point"><div class="dot"></div></div><div class="tagName">Home</div></a>
+                        <a{% if request.get_full_path == '/login' %} class="current" {% endif %} href="/login"><div class="point"><div class="dot"></div></div><div class="tagName">login</div></a>
+                        <a{% if request.get_full_path == '/register' %} class="current" {% endif %} href="/register"><div class="point"><div class="dot"></div></div><div class="tagName">Register</div></a>
                     </div>
                 </div>
         
@@ -101,68 +99,7 @@
                 </div>
             {% endif %}
         </header>
-            <div id="">
-                {% include page %}
-            </div>
-        <footer>
-            <!-- Desktop -->
-            <div class="footDesktop">
-                <div class="footLine">
-                    <a href="https://www.accenda.nl" target="_blank">
-                        <img src="{% static 'IMG/accenda.png' %}" alt="accenda">
-                    </a>
-                    <a href="https://www.i-emdelft.nl" target="_blank">
-                        <img src="{% static 'IMG/iemdelft.png' %}" alt="delft">
-                    </a>
-                </div>
-                <div class="footInfo">
-                    <div class="footBlock-1">
-                        <div>&copy; 2021</div>
-                        <div>H2Smart</div>
-                    </div>
-                    <div class="footBlock-2">
-                        <div>Creators:</div>
-                        <div>Nigel de Werk</div>
-                        <div>Sebastiaan de Vries</div>
-                    </div>
-                    <div class="footBlock-3">
-                        <div>System:</div>
-                        <div>RaspbianLight-OS</div>
-                    </div>
-                    <div class="footBlock-4">
-                        <div>Help:</div>
-                        <div>info@accenda.nl</div>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Mobile -->
-            <div class="footMobile">
-                <div class="footLine">
-                    <img src="{% static 'IMG/accenda.png' %}" alt="accenda">
-                    <img src="{% static 'IMG/iemdelft.png' %}" alt="delft">
-                </div>
-                <div class="footInfo">
-                    <div class="footBlock-1">
-                        <div>&copy; 2021</div>
-                        <div>H2Smart</div>
-                    </div>
-                    <div class="footBlock-2">
-                        <div>Creators:</div>
-                        <div>Nigel de Werk</div>
-                        <div>Sebastiaan de Vries</div>
-                    </div>
-                    <div class="footBlock-3">
-                        <div>System:</div>
-                        <div>RaspbianLight-OS</div>
-                    </div>
-                    <div class="footBlock-4">
-                        <div>Help:</div>
-                        <div>info@accenda.nl</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {% include page %}
         <script src="{% static 'JS/default.js' %}"></script>
     </body>
 </html>

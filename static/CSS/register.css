@@ -1,7 +1,7 @@
 /* Computer */
 @media only screen and (min-width: 1000px) {
     main {
-        height: 100vh;
+        height: 80vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -11,41 +11,47 @@
         height: 55vh;
         width: 25vw;
         padding: 4vh;
-        color: #282D3C;
-        background: #00a8f3;
+        color: #d6a345;
         border-radius: 20px;
         display: flex;
         align-items: stretch;
         justify-content: space-evenly;
         flex-direction: column;
+        background: white;
+        box-shadow: 0px 0px 25px 5px #444444;
     }
 
     .login-box h1{
         font-size: 40px;
         text-transform: uppercase;
-        color: whitesmoke;
     }
 
     input {
         height: 4vh;
         width: 100%;
         border: none;
-        border-bottom: solid gray 3px;
+        border-bottom: solid #888888 3px;
         margin-bottom: 5px;
+        color: black;
+        font-size: 1vw;
+        font-weight: 600;
     }
 
     .submit {
         height: 6vh;
         width: 100%;
-        color: whitesmoke;
-        font-size: 20px;
-        background: rgb(0, 199, 0);
-        border: none;
+        color: #d6a345;
+        font-size: 22px;
+        font-weight: 600;
         cursor: pointer;
+        border: solid 3px #888888;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: white;
     }
 
     input:focus {
-        outline: 0px;
+        outline: none;
     }
 
     p {

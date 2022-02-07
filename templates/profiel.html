@@ -11,22 +11,38 @@
         <h1>Profiel</h1>
         <br>
         {% if user.is_authenticated %}
-        <div class="profileInfo">
-            <div class="nameTag">
-                <div class="name">Naam:</div>
-                <div class="nameInsert">{{ user.username }}</div>
+            <div class="profileInfo">
+                <div class="nameTag">
+                    <div class="name">Naam:</div>
+                    <div class="nameInsert">{{ user.username }}</div>
+                </div>
+                <div class="mailTag">
+                    <div class="mail">E-Mail:</div>
+                    <div class="mailInsert">{{ user.email }}</div>
+                </div>
+                <div class="indexTag">
+                    <div class="index">Metingen:</div>
+                    <div class="indexInsert">{{ user.profile.meting_ids }}</div>
+                </div>
+                <div class="nameTag">
+                    <div class="name">Permissions:</div>
+                    <div class="nameInsert">
+                        {% if user.is_superuser %}
+                            SuperUser: Yes
+                        {% else %}
+                            SuperUser: No
+                        {% endif %}
+                        <br>
+                        {% if user.is_staff %}
+                            Staff status: Yes
+                        {% else %}
+                            Staff status: No
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <div class="mailTag">
-                <div class="mail">E-Mail:</div>
-                <div class="mailInsert">{{ user.email }}</div>
-            </div>
-            <div class="indexTag">
-                <div class="index">Metingen:</div>
-                <div class="indexInsert">{{ user.profile.meting_ids }}</div>
-            </div>
-        </div>
         {% else %}
-        <p class="loginMSG">Om uw gegevems te zien moet u eerst <a href="/login">inloggen</a>.</p>
+            <p class="loginMSG">Om uw gegevems te zien moet u eerst <a href="/login">inloggen</a>.</p>
         {% endif %}
     </div>
 </main>

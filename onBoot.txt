@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd H2Site
-source venv/bin/activate
-sudo uwsgi --http :80 --module H2Site.wsgi

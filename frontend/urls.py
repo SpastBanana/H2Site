@@ -11,5 +11,7 @@ urlpatterns = [
     path('dashboard', views.dashboardView, name='Dashboard'),
     path('downloads', views.downloadsView, name='Downloads'),
     path('data-analytics', views.dataAnalyticsView, name='Data-Analytics'),
+    path('testcharts', views.testChartView, name='Test Charts'),
     path('logboek', views.logboekView, name='Logboek'),
+    path('ass', views.liveData, name='kont')
 ]
