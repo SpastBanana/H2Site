@@ -14,6 +14,9 @@ class createdeltaStatus(APIView):
     def post(self, request, format=None):
         try:
             payload = request.data["payload"]
+            print(payload, type(payload))
+
+            payload = "".join(str(item) for item in payload).replace(".", "")
 
             values = []
             for i in range(0, len(payload), 4):
@@ -22,37 +25,47 @@ class createdeltaStatus(APIView):
                 valueFloat = value / 100
                 values.append(valueFloat)
 
-            TA1 = values[0]
-            TA2 = values[1]
-            TB1 = values[2]
-            TB2 = values[3]
-            TC1 = values[4]
-            TC2 = values[5]
-            TD1 = values[6]
-            TD2 = values[7]
 
-            TA1_2 = values[8]
-            TB1_2 = values[9]
-            TC1_2 = values[10]
-            TD1_2 = values[11]
 
-            flow_1 = values[12]
-            flow_2 = values[13]
-            flow_3 = values[14]
-            flow_H2 = values[15]
+            WP_IN = values[0]
+            WP_UIT = values[1]
+            delta_WP = values[2]
 
-            TAP = values[16]
-            TBP = values[17]
-            TCP = values[18]
-            TDP = values[19]
+            BC_ww_IN = values[3]
+            BC_ww_UIT = values[4]
+            delta_BC = values[5]
+
+            VloerVerw_IN = values[6]
+            VloerVerw_UIT = values[7]
+            delta_VloerVerw = values[8]
+
+            flow_WP = values[9]
+            flow_WW_BC = values[10]
+            flow_VloerVerw = values[11]
+            H2_massa_flow = values[12]
+
+            Temperatuur_hal = values[13]
+            Temperatuur_BC_uitlaat = values[14]
+            driewegklep_BC = values[15]
+            BC_intern_T1 = values[16]
+
+            driewegklep_WP = values[17]
+            geleverd_vermogen_therm = values[18]
+            opgenmoen_vermogen_el = values[19]
+            Accu_spanning = values[20]
+            Accu_stroom = values[21]
+            Accu_SOC = values[22]
 
             meting_id = request.headers.get('metingid').upper()
             delta_status = deltaStatus(meting_id=meting_id,
-                                        TA1=TA1, TA2=TA2, TA1_2=TA1_2,TAP=TAP,
-                                        TB1=TB1, TB2=TB2, TB1_2=TB1_2, TBP=TBP,
-                                        TC1=TC1, TC2=TC2, TC1_2=TC1_2, TCP=TCP,
-                                        TD1=TD1, TD2=TD2, TD1_2=TD1_2, TDP=TDP,
-                                        flow_1=flow_1, flow_2=flow_2, flow_3=flow_3, flow_H2=flow_H2,
+                                        WP_IN=WP_IN, WP_UIT=WP_UIT, delta_WP=delta_WP,
+                                        BC_ww_IN=BC_ww_IN,BC_ww_UIT=BC_ww_UIT, delta_BC=delta_BC,
+                                        VloerVerw_IN=VloerVerw_IN, VloerVerw_UIT=VloerVerw_UIT, delta_VloerVerw=delta_VloerVerw,
+                                        flow_WP=flow_WP, flow_WW_BC=flow_WW_BC, flow_VloerVerw=flow_VloerVerw, H2_massa_flow=H2_massa_flow,
+                                        Temperatuur_hal=Temperatuur_hal, Temperatuur_BC_uitlaat=Temperatuur_BC_uitlaat, driewegklep_BC=driewegklep_BC, BC_intern_T1=BC_intern_T1,
+
+                                        driewegklep_WP=driewegklep_WP, geleverd_vermogen_therm=geleverd_vermogen_therm, opgenmoen_vermogen_el=opgenmoen_vermogen_el,
+                                        Accu_spanning=Accu_spanning, Accu_stroom=Accu_stroom, Accu_SOC=Accu_SOC,
                                         )
             delta_status.save()
             return Response({'Good request': 'saved'}, status=status.HTTP_200_OK)

@@ -1,0 +1,293 @@
+WindowManager:
+    HomeScreen:
+    FuelScreen:
+    PompScreen:
+    HuisScreen:
+
+<HomeScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+    name: "home"
+    GridLayout:
+        rows: 2
+        size: root.width, root.height
+        GridLayout:
+            cols: 2
+
+            GridLayout:
+                rows: 5
+                Label: 
+                    text: "Systeem"
+                    font_size: 32
+                    color: 0,0,0,1
+                Label:
+                    text: "H2 verbruik:"
+                    font_size: 25
+                    color: 0,0,0,1
+                Label:
+                    text: "2 L/min"
+                    font_size: 20
+                    color: 0,0,0,1
+                Label:
+                    text: "Elektrisch verbruik:"
+                    font_size: 25
+                    color: 0,0,0,1
+                Label:
+                    text: "1.21 kW"
+                    font_size: 20
+                    color: 0,0,0,1
+            GridLayout:
+                rows: 2
+                GridLayout:
+                    rows: 2
+                    Label:
+                        text: "Huis"
+                        font_size: 32
+                        color: 0,0,0,1
+                    GridLayout:
+                        cols: 2
+                        GridLayout:
+                            rows: 2
+                            Label:
+                                text: "Verwarming:"
+                                font_size: 25
+                                color: 0,0,0,1
+                            Label:
+                                text: "23 C:"
+                                font_size: 20
+                                color: 0,0,0,1
+                        GridLayout:
+                            rows: 2
+                            Label:
+                                text: "Ruimte:"
+                                font_size: 25
+                                color: 0,0,0,1
+                            Label:
+                                text: "22 C:"
+                                font_size: 20
+                                color: 0,0,0,1
+                GridLayout:
+                    rows: 2
+                    Label:
+                        text: "Rendement"
+                        font_size: 32
+                        color: 0,0,0,1
+                    Label:
+                        text: "120 %"
+                        font_size: 25
+                        color: 0,0,0,1
+            
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 80
+        
+            Label:
+                text: "Screen:"
+                font_size: 25
+                color: 0,0,0,1
+                
+            Label:
+                text: "Home"
+                font_size: 25
+                color: 0,0,0,1
+            
+            Label:
+                text: "<"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                canvas.before:
+                    Color:
+                        rgba: (160/255, 160/255, 160/255, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                
+            Button:
+                text: ">"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "fuel"
+                    root.manager.transition.direction = "left"
+
+<FuelScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "fuel"
+    GridLayout:
+        rows: 2
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            
+            Label:
+                text: "Fuel cell screen"
+                font_size: 32
+                color: 0,0,0,1
+            
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 80
+        
+            Label:
+                text: "Screen:"
+                font_size: 25
+                color: 0,0,0,1
+                
+            Label:
+                text: "Fuel-Cell"
+                font_size: 25
+                color: 0,0,0,1
+            
+            Button:
+                text: "<"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "home"
+                    root.manager.transition.direction = "right"
+                
+            Button:
+                text: ">"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "pomp"
+                    root.manager.transition.direction = "left"
+
+<PompScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "pomp"
+    GridLayout:
+        rows: 2
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            
+            Label:
+                text: "Warmte pomp screen"
+                font_size: 32
+                color: 0,0,0,1
+            
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 80
+        
+            Label:
+                text: "Screen:"
+                font_size: 25
+                color: 0,0,0,1
+                
+            Label:
+                text: "Heat-pump"
+                font_size: 25
+                color: 0,0,0,1
+            
+            Button:
+                text: "<"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "fuel"
+                    root.manager.transition.direction = "right"
+                
+            Button:
+                text: ">"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "huis"
+                    root.manager.transition.direction = "left"
+
+<HuisScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "huis"
+    GridLayout:
+        rows: 2
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            
+            Label:
+                text: "Ruimte met installatie"
+                font_size: 32
+                color: 0,0,0,1
+            
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 80
+        
+            Label:
+                text: "Screen:"
+                font_size: 25
+                color: 0,0,0,1
+                
+            Label:
+                text: "Heated-room"
+                font_size: 25
+                color: 0,0,0,1
+            
+            Button:
+                text: "<"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                background_normal: ''
+                background_color: (52/255, 204/255, 235/255, 1)
+                on_release:
+                    app.root.current = "pomp"
+                    root.manager.transition.direction = "right"
+                
+            Label:
+                text: ">"
+                font_size: 30
+                size_hint_x: None
+                width: 240
+                canvas.before:
+                    Color:
+                        rgba: (160/255, 160/255, 160/255, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size

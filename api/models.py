@@ -5,40 +5,38 @@ class deltaStatus(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     meting_id = models.CharField(max_length=20)
 
-    # Delta a Powercel
-    TA1 = models.FloatField()
-    TA2 = models.FloatField()
-    TA1_2 = models.FloatField()
-    TAP = models.FloatField()
+    WP_IN = models.FloatField()
+    WP_UIT = models.FloatField()
+    delta_WP = models.FloatField()
 
-    # Delta b Waterpomp
-    TB1 = models.FloatField()
-    TB2 = models.FloatField()
-    TB1_2 = models.FloatField()
-    TBP = models.FloatField()
+    BC_ww_IN = models.FloatField()
+    BC_ww_UIT = models.FloatField()
+    delta_BC = models.FloatField()
 
-    # Delta c Vloerverwarming (Vloer)
-    TC1 = models.FloatField()
-    TC2 = models.FloatField()
-    TC1_2 = models.FloatField()
-    TCP = models.FloatField()
+    VloerVerw_IN = models.FloatField()
+    VloerVerw_UIT = models.FloatField()
+    delta_VloerVerw = models.FloatField()
 
-    # Delta d reserve
-    TD1 = models.FloatField()
-    TD2 = models.FloatField()
-    TD1_2 = models.FloatField()
-    TDP = models.FloatField()
+    flow_WP = models.FloatField()
+    flow_WW_BC = models.FloatField()
+    flow_VloerVerw = models.FloatField()
+    H2_massa_flow = models.FloatField()
 
-    # flows
-    flow_1 = models.FloatField() #powercel
-    flow_2 = models.FloatField() #Waterpomp
-    flow_3 = models.FloatField() #Vloerverwarming
-    flow_H2 = models.FloatField() #Waterstof
+    Temperatuur_hal = models.FloatField()
+    Temperatuur_BC_uitlaat = models.FloatField()
+    driewegklep_BC = models.FloatField()
+    BC_intern_T1 = models.FloatField()
 
+    driewegklep_WP = models.FloatField()
+    geleverd_vermogen_therm = models.FloatField()
+    opgenmoen_vermogen_el = models.FloatField()
+    Accu_spanning = models.FloatField()
+    Accu_stroom = models.FloatField()
+    Accu_SOC = models.FloatField()
 
 
     def __str__(self):
-        return self.meting_id
+            return self.meting_id
 
     class Meta:
         verbose_name_plural = "Metingen"

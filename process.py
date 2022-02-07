@@ -1,5 +1,4 @@
 from genericpath import isdir, isfile
-from H2Site import settings
 import csv
 import datetime
 import time
@@ -13,9 +12,8 @@ while True:
     folderDate = x.strftime("%m-%b-%Y")
     fileDate = x.strftime("%d-%b-%Y")
     writeTime = x.strftime("%d-%m %H:%M")
-    basedir = str(settings.BASE_DIR)
-    dirPath = basedir + '/static/excel-data/' + folderDate
-    dataFile = basedir + '/static/excel-data/' + folderDate + '/' + fileDate + '.csv'
+    dirPath = '/static/excel-data/' + folderDate
+    dataFile = f'/static/excel-data/{folderDate}/{fileDate}.csv'
 
     #Make fake test vals
     sendStuf = [2,0,0,1,3,4,0,0,1,3,4,0,0,1,3,4,0,0,1,3,4]
@@ -56,5 +54,4 @@ while True:
             with open(dataFile, 'a', encoding='UTF8', newline = '') as f:
                 data = csv.writer(f)
                 data.writerow(sendStuf)
-                count = count + 1
-                time.sleep(60)
+            time.sleep(1)
